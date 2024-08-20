@@ -4,7 +4,7 @@ const app = express();
 
 const allowedOrigins = [
 	"http://localhost:3000", // Desarrollo local
-	"https://integration-forms.vercel.app/", // Dominio en Vercel
+	"https://api-test-form-one.vercel.app/", // Dominio en Vercel
 ];
 
 app.use(
