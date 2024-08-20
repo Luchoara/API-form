@@ -45,7 +45,7 @@
 
 					console.log("DATA TO SEND:", data);
 
-					fetch("https://tu-proyecto.vercel.app/api/proxy", { // URL del servidor en Vercel
+					fetch("/api/proxy", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
