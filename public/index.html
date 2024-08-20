@@ -45,7 +45,7 @@
 
 					console.log("DATA TO SEND:", data);
 
-					fetch("/api/proxy", {
+					fetch("https://integration-forms.vercel.app/api/proxy", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
