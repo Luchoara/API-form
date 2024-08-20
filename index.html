@@ -1,79 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Send Data</title>
-		<link rel="stylesheet" href="styles.css" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
-		/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-	</head>
-	<body>
-		<div class="form-container">
-			<form id="dataForm">
-				<h2>Form</h2>
-				<label for="publisher_id">Publisher ID:</label>
-				<input
-					type="text"
-					id="publisher_id"
-					name="publisher_id"
-					value="9637884f"
-					required
-				/>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario con CORS</title>
+</head>
+<body>
+    <h1>Enviar datos a través de CORS</h1>
+    <form id="dataForm">
+        <label for="inputData">Dato:</label>
+        <input type="text" id="inputData" name="data" required />
+        
+        <label for="publisher_id">Publisher ID:</label>
+        <input type="text" id="publisher_id" name="publisher_id" required />
 
-				<label for="caller_number">Caller Number:</label>
-				<input type="tel" id="caller_number" name="caller_number" required />
+        <label for="caller_number">Caller Number:</label>
+        <input type="tel" id="caller_number" name="caller_number" required />
 
-				<button type="submit">Submit</button>
-			</form>
-		</div>
+        <button type="submit">Enviar</button>
+    </form>
 
-		<script>
-			document
-				.getElementById("dataForm")
-				.addEventListener("submit", function (event) {
-					event.preventDefault();
+    <script>
+        document
+            .getElementById("dataForm")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
 
-					const data = {
-						publisher_id: document.getElementById("publisher_id").value,
-						caller_number: document.getElementById("caller_number").value,
-					};
+                const data = {
+                    key_1: document.getElementById("inputData").value,
+                    publisher_id: document.getElementById("publisher_id").value,
+                    caller_number: document.getElementById("caller_number").value
+                };
 
-					console.log("DATA TO SEND:", data);
-
-					fetch("https://api-test-form-one.vercel.app/api/proxy", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify(data),
-					})
-						.then((response) => {
-							if (!response.ok) {
-								throw new Error(`HTTP error! status: ${response.status}`);
-							}
-							return response.json();
-						})
-						.then((result) => {
-							console.log("SERVER RESPONSE:", result);
-							alert("Data sent successfully!");
-
-							if (result && result.success) {
-								console.log("Data reached destination successfully.");
-							} else {
-								console.error("Data did not reach destination.");
-								alert("Data did not reach destination.");
-							}
-						})
-						.catch((error) => {
-							console.error("Error:", error);
-							alert("There was an error sending the data.");
-						});
-				});
-		</script>
-	</body>
+                fetch("http://localhost:3000/proxy", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then((response) => response.json())
+                    .then((result) => {
+                        console.log("Resultado:", result);
+                        alert("Datos enviados correctamente!");
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        alert("Ocurrió un error al enviar los datos.");
+                    });
+            });
+    </script>
+</body>
 </html>
