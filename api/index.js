@@ -22,6 +22,7 @@ app.post("/api/proxy", (req, res) => {
       if (error) {
         return res.status(500).send(error);
       }
+      console.log("index.js BODY:", body);
       res.status(response.statusCode).send(body);
     }
   );
