@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Send Data</title>
-		<link rel="stylesheet" href="/styles.css" />
+		<link rel="stylesheet" href="../styles.css" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
@@ -45,7 +45,7 @@
 
 					console.log("DATA TO SEND:", data);
 
-					fetch("https://integration-forms.vercel.app/api/proxy", {
+					fetch("https://api-test-form-one.vercel.app/api/proxy", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
