@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sent Data</title>
+		<link rel="stylesheet" href="styles.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+	</head>
+	<body>
+		<div class="form-container">
+			<form id="dataForm">
+				<h2>Form</h2>
+				<!-- d8041151 ATIF PUBLISHER -->
+				<label for="publisher_id">Publisher ID:</label>
+				<input
+					type="text"
+					id="publisher_id"
+					name="publisher_id"
+					value="d8041151" 
+					required
+				/>
+
+				<label for="caller_number">Caller Number:</label>
+				<input type="tel" id="caller_number" name="caller_number" required />
+				
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+		<script>
+			document
+				.getElementById("dataForm")
+				.addEventListener("submit", function (event) {
+					event.preventDefault();
+		
+					const data = {
+						publisher_id: document.getElementById("publisher_id").value,
+						caller_number: document.getElementById("caller_number").value,
+					};
+		
+					fetch("/api/proxy", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(data),
+					})
+						.then((response) => response.json())
+						.then((result) => {
+							console.log("Result:", result);
+							alert("Data sent!");
+						})
+						.catch((error) => {
+							console.error("Error:", error);
+							alert("There is an error");
+						});
+				});
+		</script>		
+	</body>
+</html>
