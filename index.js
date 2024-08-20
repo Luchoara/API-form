@@ -45,5 +45,5 @@ app.post("/api/proxy", (req, res) => {
 module.exports = app;
 
 app.listen(process.env.PORT || 3000, () => {
-	console.log("Server is running");
+	console.log("Server is running on PORT 3000");
 });
