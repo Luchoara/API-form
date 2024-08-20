@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Sent Data</title>
+		<title>Send Data</title>
 		<link rel="stylesheet" href="styles.css" />
 		<link
 			rel="stylesheet"
@@ -16,19 +16,18 @@
 		<div class="form-container">
 			<form id="dataForm">
 				<h2>Form</h2>
-				<!-- d8041151 ATIF PUBLISHER -->
 				<label for="publisher_id">Publisher ID:</label>
 				<input
 					type="text"
 					id="publisher_id"
 					name="publisher_id"
-					value="" 
+					value=""
 					required
 				/>
 
 				<label for="caller_number">Caller Number:</label>
 				<input type="tel" id="caller_number" name="caller_number" required />
-				
+
 				<button type="submit">Submit</button>
 			</form>
 		</div>
@@ -38,17 +37,14 @@
 				.getElementById("dataForm")
 				.addEventListener("submit", function (event) {
 					event.preventDefault();
-		
-					// Recopilar los datos del formulario
+
 					const data = {
 						publisher_id: document.getElementById("publisher_id").value,
 						caller_number: document.getElementById("caller_number").value,
 					};
-		
-					// Mostrar los datos que se van a enviar
+
 					console.log("DATA TO SEND:", data);
-		
-					// Enviar los datos mediante fetch
+
 					fetch("/api/proxy", {
 						method: "POST",
 						headers: {
@@ -57,20 +53,15 @@
 						body: JSON.stringify(data),
 					})
 						.then((response) => {
-							// Verificar si la respuesta del servidor es exitosa
 							if (!response.ok) {
-								throw new Error(
-									`HTTP error! status: ${response.status}`
-								);
+								throw new Error(`HTTP error! status: ${response.status}`);
 							}
 							return response.json();
 						})
 						.then((result) => {
-							// Mostrar el resultado devuelto por el servidor
 							console.log("SERVER RESPONSE:", result);
 							alert("Data sent successfully!");
-		
-							// Verificar si la información llegó al destino
+
 							if (result && result.success) {
 								console.log("Data reached destination successfully.");
 							} else {
@@ -79,12 +70,10 @@
 							}
 						})
 						.catch((error) => {
-							// Manejar y mostrar cualquier error ocurrido durante el proceso
 							console.error("Error:", error);
 							alert("There was an error sending the data.");
 						});
 				});
 		</script>
-		
 	</body>
 </html>
