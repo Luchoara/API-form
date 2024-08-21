@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const API_URL = 'https://api.routingapi.com/rtbs.json?key=ab514634-6955-4f94-9e22-5de033366d2f';
+const API_URL = 'https://api.routingapi.com/rtbs.json?key=a358613a-141b-4371-95e8-bfa73133db5b'; // 812 MVA
 
 // Ruta para manejar solicitudes POST a través del proxy
 app.post('/proxy', (req, res) => {
