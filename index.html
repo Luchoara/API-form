@@ -1,55 +1,163 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulario con CORS</title>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Lead Form - Test</title>
 		<link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-	<div class="form-container">
-    <h1>Enviar datos a través de CORS</h1>
-    <form id="dataForm">
-        
-        <label for="publisher_id">Publisher ID:</label>
+	</head>
+	<body>
+		<div class="form-container">
+			<h1>Sent Data CORS</h1>
+			<form id="dataForm">
+				<label for="publisher_id">Publisher ID:</label>
 				<!-- CompleteDebtHelp Publisher-->
-        <input type="text" id="publisher_id" name="publisher_id" value="d8041151" /> 
+				<input
+					type="text"
+					id="publisher_id"
+					name="publisher_id"
+					value="9637884f"
+				/>
 
-        <label for="caller_number">Caller Number:</label>
-        <input type="tel" id="caller_number" name="caller_number" value="+18888696680" />
+				<label for="caller_number">Caller Number:</label>
+				<input
+					type="tel"
+					id="caller_number"
+					name="caller_number"
+					value="+18888696680"
+				/>
 
-        <button type="submit">Enviar</button>
-    </form>
+				<label for="caller_number">Caller Number:</label>
+				<input type="tel" id="caller_number" name="caller_number" required />
 
-    <script>
-        document
-            .getElementById("dataForm")
-            .addEventListener("submit", function (event) {
-                event.preventDefault();
+				<label for="first_name">First Name:</label>
+				<input type="text" id="first_name" name="first_name" required />
 
-                const data = {
-                    publisher_id: document.getElementById("publisher_id").value,
-                    caller_number: document.getElementById("caller_number").value
-                };
+				<label for="last_name">Last Name:</label>
+				<input type="text" id="last_name" name="last_name" required />
 
-                fetch("http://localhost:3000/proxy", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                })
-                    .then((response) => response.json())
-                    .then((result) => {
-                        console.log("Resultado:", result);
-                        alert("Datos enviados correctamente!");
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
-                        alert("Ocurrió un error al enviar los datos.");
-                    });
-            });
-    </script>
-	</div>
-</body>
+				<label for="trusted_form_cert_url">trusted_form_cert_url:</label>
+				<input
+					type="text"
+					id="trusted_form_cert_url"
+					name="trusted_form_cert_url"
+					required
+				/>
+
+				<label for="needs_attorney">needs_attorney:</label>
+				<input type="text" id="needs_attorney" name="needs_attorney" required />
+
+				<label for="person_at_fault">person_at_fault:</label>
+				<input
+					type="text"
+					id="person_at_fault"
+					name="person_at_fault"
+					required
+				/>
+
+				<label for="incident_date">incident_date:</label>
+				<input type="text" id="incident_date" name="incident_date" required />
+
+				<label for="injury_occurred">injury_occurred:</label>
+				<input
+					type="text"
+					id="injury_occurred"
+					name="injury_occurred"
+					required
+				/>
+
+				<label for="injury_type">injury_type:</label>
+				<input type="text" id="injury_type" name="injury_type" required />
+
+				<label for="accident_description">accident_description:</label>
+				<input
+					type="text"
+					id="accident_description"
+					name="accident_description"
+					required
+				/>
+
+				<label for="have_attorney">have_attorney:</label>
+				<input type="text" id="have_attorney" name="have_attorney" required />
+
+				<label for="incident_timeframe">incident_timeframe:</label>
+				<input
+					type="text"
+					id="incident_timeframe"
+					name="incident_timeframe"
+					required
+				/>
+
+				<label for="zip">Zip Code:</label>
+				<input type="text" id="zip" name="zip" required />
+
+				<label class="form-label" for="hospitalized_or_treated"
+					>hospitalized_or_treated</label
+				>
+				<input
+					type="text"
+					class="hospitalized_or_treated"
+					name="hospitalized_or_treated"
+					id="hospitalized_or_treated"
+				/>
+
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email" required />
+
+				<button type="submit">Enviar</button>
+			</form>
+
+			<script>
+				document
+					.getElementById("dataForm")
+					.addEventListener("submit", function (event) {
+						event.preventDefault();
+
+						const data = {
+							publisher_id: document.getElementById("publisher_id").value,
+							caller_number: document.getElementById("caller_number").value,
+							first_name: document.getElementById("first_name").value,
+							last_name: document.getElementById("last_name").value,
+
+							trusted_form_cert_url: document.getElementById(
+								"trusted_form_cert_url"
+							).value,
+							needs_attorney: document.getElementById("needs_attorney").value,
+							person_at_fault: document.getElementById("person_at_fault").value,
+							incident_date: document.getElementById("incident_date").value,
+							injury_occurred: document.getElementById("injury_occurred").value,
+							injury_type: document.getElementById("injury_type").value,
+							accident_description: document.getElementById(
+								"accident_description"
+							).value,
+							have_attorney: document.getElementById("have_attorney").value,
+							incident_timeframe:
+								document.getElementById("incident_timeframe").value,
+							zip: document.getElementById("zip").value,
+							email: document.getElementById("email").value,
+							hospitalized_or_treated: document.getElementById(
+								"hospitalized_or_treated"
+							).value,
+						};
+
+						fetch("https://integration-forms.vercel.app/api", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify(data),
+						})
+							.then((response) => response.json())
+							.then((result) => {
+								console.log("Resultado:", result);
+								alert("Datos enviados correctamente!");
+							})
+							.catch((error) => {
+								console.error("Error:", error);
+								alert("Ocurrió un error al enviar los datos.");
+							});
+					});
+			</script>
+		</div>
+	</body>
 </html>
