@@ -15,7 +15,3 @@ app.post('/api/data', (req, res) => {
     res.json({ message: 'Solicitud recibida correctamente!', data: receivedData });
 });
 
-// Iniciar el servidor en el puerto 3000
-app.listen(3000, () => {
-    console.log('Servidor ejecutándose en http://localhost:3000');
-});

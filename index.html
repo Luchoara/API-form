@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulario con CORS</title>
+		<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+	<div class="form-container">
     <h1>Enviar datos a través de CORS</h1>
     <form id="dataForm">
-        <label for="inputData">Dato:</label>
-        <input type="text" id="inputData" name="data" required />
         
         <label for="publisher_id">Publisher ID:</label>
         <input type="text" id="publisher_id" name="publisher_id" required />
@@ -27,7 +27,6 @@
                 event.preventDefault();
 
                 const data = {
-                    key_1: document.getElementById("inputData").value,
                     publisher_id: document.getElementById("publisher_id").value,
                     caller_number: document.getElementById("caller_number").value
                 };
@@ -50,5 +49,6 @@
                     });
             });
     </script>
+	</div>
 </body>
 </html>
