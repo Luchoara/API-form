@@ -29,10 +29,18 @@ app.post("/proxy", (req, res) => {
 		},
 		(error, response, body) => {
 			if (error) {
-				return res.status(500).send(error);
+				console.error("Error al enviar datos a la API externa:", error);
+				return res.status(500).json({ success: false, message: "Error al enviar datos a la API externa", error });
 			}
+
 			console.log("Respuesta de la API externa:", body);
-			res.status(response.statusCode).send(body);
+			console.log("Código de estado de la API externa:", response.statusCode);
+
+			if (response.statusCode === 200 || response.statusCode === 201) {
+				res.status(response.statusCode).json({ success: true, message: "Datos enviados correctamente", data: body });
+			} else {
+				res.status(response.statusCode).json({ success: false, message: `Error en la API externa. Código de estado: ${response.statusCode}`, data: body });
+			}
 		}
 	);
 });
