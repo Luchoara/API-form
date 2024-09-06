@@ -1,91 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lead Form - Test</title>
-    <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-    <div class="form-container">
-        <h1>Sent Data CORS</h1>
-        <form id="dataForm">
-            <label for="publisher_id">Publisher ID:</label>
-            <input type="text" id="publisher_id" name="publisher_id" value="9637884f" required />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>FORM</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- CSS CDN -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
+		/>
+		<!-- <link rel="stylesheet" href="style.css">-->
+		<!-- datetimepicker jQuery CDN -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+	</head>
 
-            <label for="caller_number">Caller Number:</label>
-            <input type="tel" id="caller_number" name="caller_number" value="+18888696680" required />
+	<body>
+		<div class="container">
+			<div class="form-div">
+				<h1>Post data form</h1>
 
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name="first_name" required />
+				<form action="/api/proxy" method="post">
+					<div class="mb-3">
+						<label for="publisher_id" class="form-label">publisher_id</label>
+						<input
+							type="text"
+							class="form-control"
+							name="publisher_id"
+							id="publisher_id"
+						/>
+					</div>
 
-            <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name="last_name" required />
+					<div class="mb-3">
+						<label for="caller_number" class="form-label">caller_number</label>
+						<input
+							type="text"
+							class="form-control"
+							name="caller_number"
+							id="caller_number"
+							aria-describedby="emailHelp"
+						/>
+					</div>
 
-            <label for="trusted_form_cert_url">Trusted Form Cert URL:</label>
-            <input type="text" id="trusted_form_cert_url" name="trusted_form_cert_url" required />
+					<div class="mb-3">
+						<label class="form-label" for="first_name">name</label>
+						<input
+							type="text"
+							class="form-control"
+							name="first_name"
+							id="first_name"
+						/>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="last_name">last_name</label>
+						<input
+							type="text"
+							class="form-control"
+							name="last_name"
+							id="last_name"
+						/>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="email">Email</label>
+						<input type="email" class="form-control" name="email" id="email" />
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="zip">Zip</label>
+						<input type="text" class="form-control" name="zip" id="zip" />
+					</div>
 
-            <label for="needs_attorney">Needs Attorney:</label>
-            <input type="text" id="needs_attorney" name="needs_attorney" required />
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
 
-            <label for="person_at_fault">Person at Fault:</label>
-            <input type="text" id="person_at_fault" name="person_at_fault" required />
+		<script>
+			document
+				.querySelector("form")
+				.addEventListener("submit", async (event) => {
+					event.preventDefault();
 
-            <label for="incident_date">Incident Date:</label>
-            <input type="text" id="incident_date" name="incident_date" required />
+					const formData = new FormData(event.target);
+					const data = Object.fromEntries(formData.entries());
 
-            <label for="injury_occurred">Injury Occurred:</label>
-            <input type="text" id="injury_occurred" name="injury_occurred" required />
+					try {
+						const response = await fetch("/api/proxy", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify(data),
+						});
 
-            <label for="injury_type">Injury Type:</label>
-            <input type="text" id="injury_type" name="injury_type" required />
+						if (response.ok) {
+							const result = await response.json();
+							console.log("Success:", result);
+						} else {
+							console.error("Error:", await response.text());
+						}
+					} catch (error) {
+						console.error("Error:", error);
+					}
+				});
+		</script>
 
-            <label for="accident_description">Accident Description:</label>
-            <input type="text" id="accident_description" name="accident_description" required />
+		<script>
+			$(document).ready(function () {
+				$("#original_lead_submit_date").datetimepicker({
+					format: "Y-m-d H:i:s",
+					step: 15, // optional: set the minute step size
+				});
+			});
 
-            <label for="have_attorney">Have Attorney:</label>
-            <input type="text" id="have_attorney" name="have_attorney" required />
+			$(document).ready(function () {
+				$("#dob").datetimepicker({
+					format: "Y-m-d",
+				});
+			});
+		</script>
 
-            <label for="incident_timeframe">Incident Timeframe:</label>
-            <input type="text" id="incident_timeframe" name="incident_timeframe" required />
-
-            <label for="zip">Zip Code:</label>
-            <input type="text" id="zip" name="zip" required />
-
-            <label for="hospitalized_or_treated">Hospitalized or Treated:</label>
-            <input type="text" id="hospitalized_or_treated" name="hospitalized_or_treated" />
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
-
-            <button type="submit">Enviar</button>
-        </form>
-
-        <script>
-            document.getElementById("dataForm").addEventListener("submit", function (event) {
-                event.preventDefault();
-
-                const formData = new FormData(this);
-                const params = new URLSearchParams(formData).toString();
-
-                fetch(`https://integration-forms.vercel.app/api?${params}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(Object.fromEntries(formData)),
-                })
-                    .then((response) => response.json())
-                    .then((result) => {
-                        console.log("Resultado:", result);
-                        alert("Datos enviados correctamente!");
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
-                        alert("Ocurrió un error al enviar los datos.");
-                    });
-            });
-        </script>
-    </div>
-</body>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+		<script defer src="/_vercel/insights/proxy.js"></script>
+	</body>
 </html>
