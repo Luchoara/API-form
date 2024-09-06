@@ -1,51 +1,44 @@
-// api/proxy.js
-
-const express = require("express");
-const cors = require("cors");
-const fetch = require("node-fetch"); // Instala este módulo si no lo tienes: npm install node-fetch
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
-app.use(cors()); // Habilitar CORS
-app.use(express.json()); // Para parsear JSON
+app.use(cors());
+app.use(express.json());
 
-app.post("/api/proxy", async (req, res) => {
-	const { publisher_id, caller_number, first_name, last_name, email, zip } =
-		req.body;
+app.post('/api/proxy', async (req, res) => {
+  const { publisher_id, caller_number, first_name, last_name, email, zip } = req.body;
 
-	try {
-		const baseURL = "https://api.routingapi.com/rtbs.json";
-		const params = new URLSearchParams({
-			key: "71447fa4-1ed1-447b-9418-dea69998be77", // API Key
-			publisher_id,
-			caller_number,
-			first_name,
-			last_name,
-			email,
-			zip,
-		});
+  try {
+    const baseURL = "https://api.routingapi.com/rtbs.json";
+    const params = new URLSearchParams({
+      key: "71447fa4-1ed1-447b-9418-dea69998be77",
+      publisher_id,
+      caller_number,
+      first_name,
+      last_name,
+      email,
+      zip,
+    });
 
-		const fullURL = `${baseURL}?${params.toString()}`;
-		console.log("Full URL:", fullURL); // Mostrar la URL en la consola
+    const fullURL = `${baseURL}?${params.toString()}`;
+    console.log("Full URL:", fullURL);
 
-		const response = await fetch(fullURL, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+    const response = await fetch(fullURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-		if (response.ok) {
-			const data = await response.json();
-			console.log("Response data (JSON or XML):", data);
-			res.status(200).json({ data, fullURL });
-		} else {
-			res.status(response.status).json({ message: "Error in API response" });
-		}
-	} catch (error) {
-		res
-			.status(500)
-			.json({ message: "Internal server error", error: error.message });
-	}
+    if (response.ok) {
+      const data = await response.json();
+      res.status(200).json({ data, fullURL });
+    } else {
+      res.status(response.status).json({ message: "Error in API response" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error", error: error.message });
+  }
 });
 
 module.exports = app;
