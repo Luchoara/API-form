@@ -6,20 +6,20 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/api/proxy', async (req, res) => {
-  const { publisher_id, caller_number, first_name, last_name, email, zip } = req.body;
-
+  const {  caller_number, first_name, last_name, email, zip } = req.body;
+// removed publisher_id,
   try {
-    const baseURL = "https://api.routingapi.com/rtbs.json";
+    const baseURL = " https://retreaverdata.com/data_writing";
     const params = new URLSearchParams({
-      key: "71447fa4-1ed1-447b-9418-dea69998be77",
-      publisher_id,
+      key: "cfaa884a-044b-4e93-9bbb-c5a51295cb3e",
+
       caller_number,
       first_name,
       last_name,
       email,
       zip,
     });
-
+    
     const fullURL = `${baseURL}?${params.toString()}`;
     console.log("Full URL:", fullURL);
 
