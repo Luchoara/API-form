@@ -6,18 +6,28 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/api/proxy', async (req, res) => {
-  const { publisher_id, caller_number, first_name, last_name, email, zip } = req.body;
+  const { publisher_id,
+    caller_number,
+    first_name,
+    last_name,
+    email,
+    state,
+    zip,
+    proyect,
+  } = req.body;
 
   try {
     const baseURL = "https://api.routingapi.com/rtbs.json";
     const params = new URLSearchParams({
-      key: "71447fa4-1ed1-447b-9418-dea69998be77",
+      key: "1856f0b6-ec9d-4197-980b-9fa017486bd5",
       publisher_id,
       caller_number,
       first_name,
       last_name,
       email,
+      state,
       zip,
+      proyect,
     });
 
     const fullURL = `${baseURL}?${params.toString()}`;
