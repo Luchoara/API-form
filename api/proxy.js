@@ -12,7 +12,7 @@ app.post('/api/proxy', async (req, res) => {
     last_name,
     email,
     state,
-    zip,
+    caller_zip,
     project,
   } = req.body;
 
@@ -26,7 +26,7 @@ app.post('/api/proxy', async (req, res) => {
       last_name,
       email,
       state,
-      zip,
+      caller_zip,
       project,
     });
 
