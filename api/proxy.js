@@ -13,7 +13,7 @@ app.post('/api/proxy', async (req, res) => {
     email,
     state,
     zip,
-    proyect,
+    project,
   } = req.body;
 
   try {
@@ -27,7 +27,7 @@ app.post('/api/proxy', async (req, res) => {
       email,
       state,
       zip,
-      proyect,
+      project,
     });
 
     const fullURL = `${baseURL}?${params.toString()}`;
