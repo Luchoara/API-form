@@ -7,6 +7,7 @@ app.use(express.json());
 
 app.post('/api/proxy', async (req, res) => {
   const { 
+    publisher_id,
     caller_number,
     first_name,
     last_name,
@@ -15,11 +16,12 @@ app.post('/api/proxy', async (req, res) => {
     caller_zip,
     trusted_form_cert_url,
   } = req.body;
-
+  
   try {
-    const baseURL = "https://retreaverdata.com/data_writing";
+    const baseURL = "https://api.routingapi.com/rtbs.json";
     const params = new URLSearchParams({
-      key: "cfaa884a-044b-4e93-9bbb-c5a51295cb3e", //
+      key: "620034cb-d0c1-4ff5-bf2c-2a86650ecd04", // 816 Medicare CPA
+      publisher_id,
       caller_number,
       first_name,
       last_name,
