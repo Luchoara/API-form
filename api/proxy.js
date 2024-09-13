@@ -13,13 +13,12 @@ app.post('/api/proxy', async (req, res) => {
     email,
     state,
     caller_zip,
-    project,
   } = req.body;
 
   try {
     const baseURL = "https://api.routingapi.com/rtbs.json";
     const params = new URLSearchParams({
-      key: "1856f0b6-ec9d-4197-980b-9fa017486bd5",
+      key: "8ed5caf5-14cd-4dbc-9f8c-2fd3927f05da",
       publisher_id,
       caller_number,
       first_name,
@@ -27,7 +26,6 @@ app.post('/api/proxy', async (req, res) => {
       email,
       state,
       caller_zip,
-      project,
     });
 
     const fullURL = `${baseURL}?${params.toString()}`;
