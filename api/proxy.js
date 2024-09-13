@@ -13,6 +13,7 @@ app.post('/api/proxy', async (req, res) => {
     email,
     state,
     caller_zip,
+    trusted_form_cert_url,
   } = req.body;
 
   try {
@@ -26,6 +27,7 @@ app.post('/api/proxy', async (req, res) => {
       email,
       state,
       caller_zip,
+      trusted_form_cert_url,
     });
 
     const fullURL = `${baseURL}?${params.toString()}`;
