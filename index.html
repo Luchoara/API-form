@@ -28,16 +28,6 @@
 
 				<form action="/api/proxy" method="post">
 					<div class="mb-3">
-						<label for="publisher_id" class="form-label">publisher_id</label>
-						<input
-							type="text"
-							class="form-control"
-							name="publisher_id"
-							id="publisher_id"
-						/>
-					</div>
-
-					<div class="mb-3">
 						<label for="caller_number" class="form-label">caller_number</label>
 						<input
 							type="text"
@@ -71,6 +61,23 @@
 						<input type="email" class="form-control" name="email" id="email" />
 					</div>
 					<div class="mb-3">
+						<label class="form-label" for="dob">Dob</label>
+						<input type="text" class="form-control" name="dob" id="dob" />
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="address">address</label>
+						<input
+							type="text"
+							class="form-control"
+							name="address"
+							id="address"
+						/>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="city">city</label>
+						<input type="text" class="form-control" name="city" id="city" />
+					</div>
+					<div class="mb-3">
 						<label class="form-label" for="state">State</label>
 						<input type="text" class="form-control" name="state" id="state" />
 					</div>
@@ -83,7 +90,42 @@
 							id="caller_zip"
 						/>
 					</div>
-					<label class="form-label" for="trusted_form_cert_url"
+					<div class="mb-3">
+						<label class="form-label" for="traffic_source_id"
+							>traffic_source_id</label
+						>
+						<input
+							type="text"
+							class="form-control"
+							name="traffic_source_id"
+							id="traffic_source_id"
+							value="2458"
+						/>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="source_url">source_url</label>
+						<input
+							type="text"
+							class="form-control"
+							name="source_url"
+							id="source_url"
+							value="https://healthsmartquotes.com/medicareadv"
+						/>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="original_lead_submit_date"
+							>original_lead_submit_date</label
+						>
+						<input
+							type="text"
+							class="form-control"
+							name="original_lead_submit_date"
+							id="original_lead_submit_date"
+							value="https://healthsmartquotes.com/medicareadv"
+						/>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="trusted_form_cert_url"
 							>trusted_form_cert_url</label
 						>
 						<input

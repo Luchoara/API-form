@@ -10,30 +10,6 @@ trusted_form_cert_url,
 			incident_timeframe,
 
 
-      trusted_form_cert_url,
-				needs_attorney,
-				person_at_fault,
-				hospitalized_or_treated,
-				incident_date,
-				injury_occurred,
-				injury_type,
-				accident_description,
-				have_attorney,
-				incident_timeframe,
-
-
-        trusted_form_cert_url,
-					needs_attorney,
-					person_at_fault,
-					hospitalized_or_treated,
-					incident_date,
-					injury_occurred,
-					injury_type,
-					accident_description,
-					have_attorney,
-					incident_timeframe,
-
-
 
 /html
 <div class="mb-3">
