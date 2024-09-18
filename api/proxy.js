@@ -6,14 +6,8 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/proxy", async (req, res) => {
-	const {
-		caller_number,
-			first_name,
-			last_name,
-			email,
-			caller_zip,
-			Project
-	} = req.body;
+	const { caller_number, first_name, last_name, email, caller_zip, Project } =
+		req.body;
 
 	try {
 		const baseURL = "https://retreaverdata.com/data_writing";
@@ -24,7 +18,7 @@ app.post("/api/proxy", async (req, res) => {
 			last_name,
 			email,
 			caller_zip,
-			Project
+			Project,
 		});
 
 		const fullURL = `${baseURL}?${params.toString()}`;
