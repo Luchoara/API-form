@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/proxy", async (req, res) => {
-	const { caller_number, first_name, last_name, email, caller_zip, camp_project } =
+	const { caller_number, First_Name, Last_Name, Email, caller_zip, Project } =
 		req.body;
 
 	try {
@@ -14,11 +14,11 @@ app.post("/api/proxy", async (req, res) => {
 		const params = new URLSearchParams({
 			key: "cfaa884a-044b-4e93-9bbb-c5a51295cb3e", // Publisher_test data_writing
 			caller_number,
-			first_name,
-			last_name,
-			email,
+			First_Name,
+			Last_Name,
+			Email,
 			caller_zip,
-			camp_project,
+			Project,
 		});
 
 		const fullURL = `${baseURL}?${params.toString()}`;
