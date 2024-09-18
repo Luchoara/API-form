@@ -8,18 +8,11 @@ app.use(express.json());
 app.post("/api/proxy", async (req, res) => {
 	const {
 		caller_number,
-		first_name,
-		last_name,
-		email,
-		dob,
-		address,
-		city,
-		state,
-		zip,
-		traffic_source_id,
-		source_url,
-		original_lead_submit_date,
-		trusted_form_cert_url,
+			first_name,
+			last_name,
+			email,
+			caller_zip,
+			Project
 	} = req.body;
 
 	try {
@@ -30,15 +23,8 @@ app.post("/api/proxy", async (req, res) => {
 			first_name,
 			last_name,
 			email,
-			dob,
-			address,
-			city,
-			state,
-			zip,
-			traffic_source_id,
-			source_url,
-			original_lead_submit_date,
-			trusted_form_cert_url,
+			caller_zip,
+			Project
 		});
 
 		const fullURL = `${baseURL}?${params.toString()}`;
