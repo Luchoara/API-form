@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/proxy", async (req, res) => {
-	const { caller_number, first_name, last_name, email, caller_zip, Project } =
+	const { caller_number, first_name, last_name, email, caller_zip, camp_project } =
 		req.body;
 
 	try {
@@ -18,7 +18,7 @@ app.post("/api/proxy", async (req, res) => {
 			last_name,
 			email,
 			caller_zip,
-			Project,
+			camp_project,
 		});
 
 		const fullURL = `${baseURL}?${params.toString()}`;
