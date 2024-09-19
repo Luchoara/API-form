@@ -12,7 +12,7 @@ app.post("/api/proxy", async (req, res) => {
 		try {
 		const baseURL = "https://rtb.retreaver.com/rtbs.json";
 		const params = new URLSearchParams({
-			key: "1856f0b6-ec9d-4197-980b-9fa017486bd5", // Publisher_test data_writing
+			key: "1856f0b6-ec9d-4197-980b-9fa017486bd5", // Campaign Windows
 			publisher_id,
 			caller_number,
 			First_Name,
