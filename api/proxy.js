@@ -6,10 +6,18 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/proxy", async (req, res) => {
-	const { publisher_id, caller_number, First_Name, Last_Name, Email, caller_state, caller_zip, Project } =
-		req.body;
-			
-		try {
+	const {
+		publisher_id,
+		caller_number,
+		First_Name,
+		Last_Name,
+		Email,
+		caller_state,
+		caller_zip,
+		Project,
+	} = req.body;
+
+	try {
 		const baseURL = "https://rtb.retreaver.com/rtbs.json";
 		const params = new URLSearchParams({
 			key: "1856f0b6-ec9d-4197-980b-9fa017486bd5", // Campaign Windows
