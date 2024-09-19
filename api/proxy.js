@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/proxy", async (req, res) => {
-	const { publisher_id, caller_number, First_Name, Last_Name, Email, caller_zip, Project } =
+	const { publisher_id, caller_number, First_Name, Last_Name, Email, caller_state, caller_zip, Project } =
 		req.body;
 			
 		try {
@@ -18,6 +18,7 @@ app.post("/api/proxy", async (req, res) => {
 			First_Name,
 			Last_Name,
 			Email,
+			caller_state,
 			caller_zip,
 			Project,
 		});
