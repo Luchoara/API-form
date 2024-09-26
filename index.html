@@ -24,8 +24,14 @@
 	<body>
 		<div class="container">
 			<div class="form-div">
-				<h1>Post data form - windows and bah</h1>
-
+				<h1>RP World Form</h1>
+				<label for="publisher_id" hidden></label>
+				<input
+					type="text"
+					id="publisher_id"
+					name="publisher_id"
+					value="PLACE PUBLISHER ID"  
+				/>
 				<form action="/api/proxy" method="post">
 					<div class="mb-3">
 						<label for="caller_number" class="form-label">caller_number</label>
@@ -38,37 +44,26 @@
 						/>
 					</div>
 					<div class="mb-3">
-						<label class="form-label" for="publisher_id">347abd5c</label>
+						<label class="form-label" for="first_name">first_name</label>
 						<input
 							type="text"
 							class="form-control"
-							name="publisher_id"
-							id="publisher_id"
-							value="347abd5c"
+							name="first_name"
+							id="first_name"
 						/>
 					</div>
-
 					<div class="mb-3">
-						<label class="form-label" for="First_Name">First_Name</label>
+						<label class="form-label" for="last_name">last_name</label>
 						<input
 							type="text"
 							class="form-control"
-							name="First_Name"
-							id="First_Name"
+							name="last_name"
+							id="last_name"
 						/>
 					</div>
 					<div class="mb-3">
-						<label class="form-label" for="Last_Name">Last_Name</label>
-						<input
-							type="text"
-							class="form-control"
-							name="Last_Name"
-							id="Last_Name"
-						/>
-					</div>
-					<div class="mb-3">
-						<label class="form-label" for="Email">Email</label>
-						<input type="Email" class="form-control" name="Email" id="Email" />
+						<label class="form-label" for="email">email</label>
+						<input type="email" class="form-control" name="email" id="email" />
 					</div>
 					<div class="mb-3">
 						<label class="form-label" for="caller_state">caller_state</label>
@@ -88,16 +83,6 @@
 							id="caller_zip"
 						/>
 					</div>
-					<div class="mb-3">
-						<label class="form-label" for="Project">Project</label>
-						<input
-							type="text"
-							class="form-control"
-							name="Project"
-							id="Project"
-						/>
-					</div>
-
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
