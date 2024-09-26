@@ -22,10 +22,11 @@ app.post("/api/proxy", async (req, res) => {
     } = req.body;
 
     // Validar que todos los campos requeridos estén presentes
-    if (!publisher_id || !caller_number || !first_name || !last_name || !email) {
+    /*
+		if (!publisher_id || !caller_number || !first_name || !last_name || !email) {
         return res.status(400).json({ message: "Missing required fields" });
     }
-
+		*/
     try {
         const baseURL = "https://rtb.retreaver.com/rtbs.json";
         const params = new URLSearchParams({
