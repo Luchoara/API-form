@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.post("/api/proxy", async (req, res) => {
 	const {
-		publisher_id,
+		
 		caller_number,
 		first_name,
 		last_name,
@@ -18,10 +18,10 @@ app.post("/api/proxy", async (req, res) => {
 	} = req.body;
 
 	try {
-		const baseURL = "https://rtb.retreaver.com/rtbs.json";
+		const baseURL = "https://retreaverdata.com/data_writing";
 		const params = new URLSearchParams({
-			key: "136b19e3-3912-476a-8b5b-9a8de3fee354", // Campaign 818 MVA 1
-			publisher_id,
+			key: "fa53b58e-fbf6-437c-b160-cf1ca1c334d9", // Campaign 818 MVA 1 - Pub 128
+			
 			caller_number,
 			first_name,
 			last_name,
