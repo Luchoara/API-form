@@ -16,7 +16,6 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
 		/>
-		<!-- <link rel="stylesheet" href="style.css">-->
 		<!-- datetimepicker jQuery CDN -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 	</head>
@@ -25,12 +24,14 @@
 		<div class="container">
 			<div class="form-div">
 				<h1>RP World Form</h1>
-				<label for="publisher_id" hidden></label>
+				<label for="publisher_id"></label>
+				<!-- PUBLISER TEST ID 7f948b38 -->
 				<input
 					type="text"
 					id="publisher_id"
 					name="publisher_id"
-					value="PLACE PUBLISHER ID"  
+					value="7f948b38"
+					hidden="true"
 				/>
 				<form action="/api/proxy" method="post">
 					<div class="mb-3">
@@ -75,7 +76,7 @@
 						/>
 					</div>
 					<div class="mb-3">
-						<label class="form-label" for="caller_zip">Zip</label>
+						<label class="form-label" for="caller_zip">Caller zip</label>
 						<input
 							type="text"
 							class="form-control"
