@@ -7,27 +7,34 @@ app.use(express.json());
 
 app.post("/api/proxy", async (req, res) => {
 	const {
-		
+		publisher_id,
 		caller_number,
 		first_name,
 		last_name,
 		email,
 		caller_state,
 		caller_zip,
-
+		attorney,
+		incident_date,
+		injured,
+		trusted_form_cert_url,
 	} = req.body;
 
 	try {
-		const baseURL = "https://retreaverdata.com/data_writing";
+		const baseURL = "https://rtb.retreaver.com/rtbs.json";
 		const params = new URLSearchParams({
-			key: "fa53b58e-fbf6-437c-b160-cf1ca1c334d9", // Campaign 818 MVA 1 - Pub 128
-			
+			key: "136b19e3-3912-476a-8b5b-9a8de3fee354", // Campaign 818 MVA 1 - Pub 128
+			publisher_id,
 			caller_number,
 			first_name,
 			last_name,
 			email,
 			caller_state,
 			caller_zip,
+			attorney,
+			incident_date,
+			injured,
+			trusted_form_cert_url,
 		});
 
 		const fullURL = `${baseURL}?${params.toString()}`;
