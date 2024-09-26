@@ -26,13 +26,14 @@ app.post("/api/proxy", async (req, res) => {
 		const params = new URLSearchParams({
 			key: "136b19e3-3912-476a-8b5b-9a8de3fee354", // Campaign 818 MVA 1 - Pub 128
 			publisher_id,
-			caller_number,
+			
 		});
 
 		const fullURL = `${baseURL}?${params.toString()}`;
 		console.log("Full URL:", fullURL);
 
     const bodyData = {
+			caller_number,
       first_name,
       last_name,
       email,
