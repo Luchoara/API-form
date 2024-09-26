@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const fetch = require("node-fetch"); // Importación de node-fetch
 
 const app = express();
 app.use(cors());
@@ -22,8 +23,8 @@ app.post("/api/proxy", async (req, res) => {
 
 	try {
 		const baseURL = "https://rtb.retreaver.com/rtbs.json";
-		const params = new URLSearchParams({
-			key: "136b19e3-3912-476a-8b5b-9a8de3fee354", // Campaign 818 MVA 1 - Pub 128
+		const bodyData = {
+			key: "136b19e3-3912-476a-8b5b-9a8de3fee354",
 			publisher_id,
 			caller_number,
 			first_name,
@@ -35,28 +36,27 @@ app.post("/api/proxy", async (req, res) => {
 			incident_date,
 			injured,
 			trusted_form_cert_url,
-		});
+		};
 
-		const fullURL = `${baseURL}?${params.toString()}`;
-		console.log("Full URL:", fullURL);
-
-		const response = await fetch(fullURL, {
+		const response = await fetch(baseURL, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
+			body: JSON.stringify(bodyData),
 		});
 
 		if (response.ok) {
 			const data = await response.json();
-			res.status(200).json({ data, fullURL });
+			res.status(200).json({ data });
 		} else {
-			res.status(response.status).json({ message: "Error in API response" });
+			const errorText = await response.text();
+			console.error("Error in API response:", errorText);
+			res.status(response.status).json({ message: "Error in API response", error: errorText });
 		}
 	} catch (error) {
-		res
-			.status(500)
-			.json({ message: "Internal server error", error: error.message });
+		console.error("Internal server error:", error.message);
+		res.status(500).json({ message: "Internal server error", error: error.message });
 	}
 });
 
