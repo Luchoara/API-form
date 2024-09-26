@@ -23,10 +23,16 @@ app.post("/api/proxy", async (req, res) => {
 
   try {
     const baseURL = "https://rtb.retreaver.com/rtbs.json";
+		const params = new URLSearchParams({
+			key: "136b19e3-3912-476a-8b5b-9a8de3fee354", // Campaign 818 MVA 1 - Pub 128
+			publisher_id,
+			caller_number,
+		});
+
+		const fullURL = `${baseURL}?${params.toString()}`;
+		console.log("Full URL:", fullURL);
+
     const bodyData = {
-      key: "136b19e3-3912-476a-8b5b-9a8de3fee354",
-      publisher_id,
-      caller_number,
       first_name,
       last_name,
       email,
@@ -38,7 +44,7 @@ app.post("/api/proxy", async (req, res) => {
       trusted_form_cert_url,
     };
 
-    const response = await fetch(baseURL, {
+    const response = await fetch(fullURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +54,7 @@ app.post("/api/proxy", async (req, res) => {
 
     if (response.ok) {
       const data = await response.json();
-      res.status(200).json({ data });
+      res.status(200).json({ data, fullURL });
     } else {
       const errorText = await response.text();
       console.error("Error in API response:", errorText);
